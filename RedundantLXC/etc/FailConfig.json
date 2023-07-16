@@ -1,0 +1,18 @@
+{
+    "Database": {
+        "Username":"username",
+        "Password":"password",
+        "Database":"RedundantLXC",
+        "Host":"localhost",
+        "Port":3306
+    },
+    "Limits": {
+        "Load": 1000,
+        "RAM": 80,
+        "CPU": 100
+    },
+    "Poller": {
+        "CheckInterval": 5,
+        "MissedInterval": 30
+    }
+}
