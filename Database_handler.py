@@ -91,7 +91,7 @@ class database:
 
     def getRunningContainers(self):
         try:
-            self.cursor.execute("select C.CID as Node from (Containers C natural join ContainerStatus S) join Nodes N on S.NID = N.NID;")
+            self.cursor.execute("select C.CID as Container from (Containers C natural join ContainerStatus S) join Nodes N on S.NID = N.NID;")
             RunningContainers = self._colselect(self.cursor.fetchall(),0)
 
             if self.debug:
@@ -310,7 +310,7 @@ class database:
 
     def getZoneUsageByNode(self,ID,Interval):
         try:
-            self.cursor.execute("select CS.NID, sum(C.Cost)/N.Budget as `Usage` from (ContainerStatus CS join Containers C on CS.CID = C.CID) join Nodes N on CS.NID = N.NID where C.Zone = %s and  (%s - N.LastSeen) < %s group by CS.NID;",(ID,time.time(),Interval))
+            self.cursor.execute("select * from (select CS.NID, sum(C.Cost)/N.Budget as `Usage` from (ContainerStatus CS join Containers C on CS.CID = C.CID) join Nodes N on CS.NID = N.NID group by N.NID) SUB where SUB.NID in  (select N.NID from Nodes N join ZoneMembership ZM on N.NID = ZM.NID where ZM.ZID = %s and  (%s - N.LastSeen) < %s); ",(ID,time.time(),Interval))
             
             
             Results = self.cursor.fetchall()

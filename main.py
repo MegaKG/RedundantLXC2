@@ -81,6 +81,7 @@ class main:
 
             #Query the Zone
             ZoneUsage = self.database.getZoneUsageByNode(Container.Zone,self.config['Poller']['MissedInterval'])
+            
             for NodeID in ZoneUsage:
                 if ZoneUsage[NodeID] > HighestPercentage:
                     #print("Highest Node",NodeID)
@@ -91,7 +92,7 @@ class main:
             #print("My Usage",MyUsage)
 
             if (AccumCost + Container.Cost) < self.MyNode.Budget:
-                if HighestPercentage >= MyUsage:
+                if (HighestPercentage >= MyUsage) or (abs(MyUsage - HighestPercentage) < 0.0001):
                     if self.MyNode.Arch == Container.Arch:
                         if (self.node.getMemoryUsage() < self.config['Limits']['RAM']) and (self.node.getProcessorUsage() < self.config['Limits']['CPU']):
                             self.ToStart.append(Container.ID)
