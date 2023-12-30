@@ -1,0 +1,2 @@
+#!/bin/sh
+python3 /usr/sbin/RedundantLXC_Tools/LXC_Stopall.py

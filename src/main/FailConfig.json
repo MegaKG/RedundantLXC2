@@ -3,13 +3,8 @@
         "Username":"username",
         "Password":"password",
         "Database":"RedundantLXC",
-        "Host":"localhost",
+        "Host":"127.0.0.1",
         "Port":3306
-    },
-    "Limits": {
-        "Load": 1000,
-        "RAM": 80,
-        "CPU": 100
     },
     "Poller": {
         "CheckInterval": 5,

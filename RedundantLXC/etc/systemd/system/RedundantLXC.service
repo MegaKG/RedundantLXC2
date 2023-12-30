@@ -6,6 +6,7 @@ After=multi-user.target
 Type=simple
 User=root
 ExecStart= /usr/bin/python3 /usr/sbin/RedundantLXC/main.py /etc/FailConfig.json
+ExecStop= /usr/bin/python3 /usr/sbin/RedundantLXC_Tools/LXC_Stopall.py
 Restart=always
 
 [Install]
