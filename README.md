@@ -9,3 +9,5 @@ The program will intelligently distribute containers across all nodes in the sys
 
 All information is stored in a shared MYSQL backend server.
 
+Tools are provided to manage the clustered containers.
+
